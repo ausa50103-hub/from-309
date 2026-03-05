@@ -897,6 +897,58 @@
   .service-card-desc { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
 
   /* ===== RESPONSIVE ===== */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: white !important; font-size: 9pt; }
+    .page-header { padding: 0 !important; }
+    .header-inner { padding: 8px 16px !important; gap: 10px !important; }
+    .logo-icon { width: 40px !important; height: 40px !important; }
+    .form-title { font-size: 16px !important; }
+    .company-name-th { font-size: 9px !important; }
+    .form-subtitle { display: none; }
+    .form-number { font-size: 14px !important; padding: 3px 10px !important; }
+    .status-bar { display: none !important; }
+    .notice-strip { display: none !important; }
+    .form-body { padding: 8px 12px !important; max-width: 100% !important; }
+    .section-card { margin-bottom: 6px !important; box-shadow: none !important; border: 1px solid #ccc !important; page-break-inside: avoid; }
+    .section-header { padding: 5px 12px !important; }
+    .section-title { font-size: 9pt !important; }
+    .section-badge { display: none !important; }
+    .section-body { padding: 8px 12px !important; }
+    .field-label { font-size: 7.5pt !important; }
+    .field-input { height: 22px !important; font-size: 8.5pt !important; padding: 0 6px !important; border: 1px solid #999 !important; }
+    select.field-input { height: 22px !important; }
+    textarea.field-input { min-height: 32px !important; font-size: 8.5pt !important; }
+    .form-grid { gap: 6px !important; }
+    .grid-2 { grid-template-columns: 1fr 1fr !important; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+    .pill-group { gap: 4px !important; }
+    .pill-label { padding: 2px 8px !important; font-size: 8pt !important; }
+    .service-cards { grid-template-columns: 1fr 1fr !important; gap: 4px !important; }
+    .service-card { padding: 5px 8px !important; }
+    .service-card-icon { font-size: 14px !important; }
+    .service-card-name { font-size: 8pt !important; }
+    .service-card-desc { font-size: 7pt !important; }
+    .total-card { padding: 8px 12px !important; }
+    .total-item-value { font-size: 12pt !important; }
+    .total-item.highlight .total-item-value { font-size: 14pt !important; }
+    .signature-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-top: 8px !important; }
+    .signature-box { min-height: 60px !important; padding: 8px !important; }
+    .submit-area { display: none !important; }
+    #configPanel { display: none !important; }
+    #configBtn { display: none !important; }
+    .notice-strip { display: none !important; }
+    #validationBanner { display: none !important; }
+    #successBanner { display: none !important; }
+    #previewBefore, #previewAfter { display: none !important; }
+    .sub-section-label { font-size: 8pt !important; margin-bottom: 4px !important; }
+    .section-divider { margin: 6px 0 !important; }
+    .field-hint { display: none !important; }
+    .barcode-section { padding: 6px !important; }
+    .page-footer { padding: 6px !important; font-size: 7pt !important; }
+    @page { size: A4; margin: 8mm; }
+  }
+
   @media (max-width: 768px) {
     .header-inner { flex-wrap: wrap; padding: 20px; gap: 16px; }
     .form-body { padding: 20px; }
@@ -1218,9 +1270,29 @@
             <option>กรุงเทพมหานคร</option><option>กระบี่</option><option>กาญจนบุรี</option>
             <option>กาฬสินธุ์</option><option>กำแพงเพชร</option><option>ขอนแก่น</option>
             <option>จันทบุรี</option><option>ฉะเชิงเทรา</option><option>ชลบุรี</option>
-            <option>เชียงใหม่</option><option>นครราชสีมา</option><option>นนทบุรี</option>
-            <option>ปทุมธานี</option><option>ภูเก็ต</option><option>สงขลา</option>
-            <option>สมุทรปราการ</option><option>อุดรธานี</option><option>ขอนแก่น</option>
+            <option>ชัยนาท</option><option>ชัยภูมิ</option><option>ชุมพร</option>
+            <option>เชียงราย</option><option>เชียงใหม่</option><option>ตรัง</option>
+            <option>ตราด</option><option>ตาก</option><option>นครนายก</option>
+            <option>นครปฐม</option><option>นครพนม</option><option>นครราชสีมา</option>
+            <option>นครศรีธรรมราช</option><option>นครสวรรค์</option><option>นนทบุรี</option>
+            <option>นราธิวาส</option><option>น่าน</option><option>บึงกาฬ</option>
+            <option>บุรีรัมย์</option><option>ปทุมธานี</option><option>ประจวบคีรีขันธ์</option>
+            <option>ปราจีนบุรี</option><option>ปัตตานี</option><option>พระนครศรีอยุธยา</option>
+            <option>พะเยา</option><option>พังงา</option><option>พัทลุง</option>
+            <option>พิจิตร</option><option>พิษณุโลก</option><option>เพชรบุรี</option>
+            <option>เพชรบูรณ์</option><option>แพร่</option><option>ภูเก็ต</option>
+            <option>มหาสารคาม</option><option>มุกดาหาร</option><option>แม่ฮ่องสอน</option>
+            <option>ยโสธร</option><option>ยะลา</option><option>ร้อยเอ็ด</option>
+            <option>ระนอง</option><option>ระยอง</option><option>ราชบุรี</option>
+            <option>ลพบุรี</option><option>ลำปาง</option><option>ลำพูน</option>
+            <option>เลย</option><option>ศรีสะเกษ</option><option>สกลนคร</option>
+            <option>สงขลา</option><option>สตูล</option><option>สมุทรปราการ</option>
+            <option>สมุทรสงคราม</option><option>สมุทรสาคร</option><option>สระแก้ว</option>
+            <option>สระบุรี</option><option>สิงห์บุรี</option><option>สุโขทัย</option>
+            <option>สุพรรณบุรี</option><option>สุราษฎร์ธานี</option><option>สุรินทร์</option>
+            <option>หนองคาย</option><option>หนองบัวลำภู</option><option>อ่างทอง</option>
+            <option>อำนาจเจริญ</option><option>อุดรธานี</option><option>อุตรดิตถ์</option>
+            <option>อุทัยธานี</option><option>อุบลราชธานี</option>
           </select>
         </div>
         <div class="field">
@@ -1353,6 +1425,9 @@
 
         <input type="radio" name="deliveryType" id="dt_sameday" value="sameday" class="pill-option">
         <label for="dt_sameday" class="pill-label">🏃 Same Day</label>
+
+        <input type="radio" name="deliveryType" id="dt_moto" value="motorcycle" class="pill-option">
+        <label for="dt_moto" class="pill-label">🏍️ มอเตอร์ไซค์</label>
       </div>
 
       <div class="sub-section-label">ตัวเลือกเพิ่มเติม</div>
