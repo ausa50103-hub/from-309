@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ใบรับฝากส่งสินค้า ป.309 | ไปรษณีย์ไทยดิสทริบิวชั่น</title>
+
+<style>
+  :root {
+    --red: #C8102E;
+    --dark-red: #9B0B20;
+    --navy: #003087;
+    --dark-navy: #001A52;
+    --gold: #C9982A;
+    --light-gold: #F5E6B8;
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F9F7F4;
+    --border: #D8D0C4;
+    --border-strong: #B8A898;
+    --text: #1A1410;
+    --text-muted: #6B5E52;
+    --text-light: #9B8F84;
+    --success: #1A6B3C;
+    --error: #C8102E;
+    --required: #C8102E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ===== HEADER ===== */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 60%, #000E30 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(201,152,42,0.12);
+  }
+
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(200,16,46,0.08);
+  }
+
+  .header-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 40px;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 90px;
+  }
+
+  .logo-icon {
+    width: 64px; height: 64px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  .logo-icon svg { width: 52px; height: 52px; }
+
+  .logo-sub {
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .header-titles {
+    flex: 1;
+  }
+
+  .company-name-th {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .form-title {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+  }
+
+  .form-title span {
+    color: var(--gold);
+  }
+
+  .form-subtitle {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 5px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    min-width: 180px;
+  }
+
+  .form-number {
+    background: var(--red);
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 12px rgba(200,16,46,0.4);
+    font-family: Georgia, serif;
+  }
+
+  .doc-number-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .doc-number-row input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    width: 130px;
+    text-align: center;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .step-indicators {
+    display: flex;
+    gap: 0;
+    align-items: center;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .step.active { color: var(--navy); font-weight: 600; }
+  .step.done { color: var(--success); }
+
+  .step-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    background: transparent;
+    flex-shrink: 0;
+  }
+
+  .step.active .step-num { background: var(--navy); color: white; border-color: var(--navy); }
+  .step.done .step-num { background: var(--success); color: white; border-color: var(--success); }
+
+  .step-divider {
+    width: 28px; height: 1px;
+    background: var(--border);
+    margin: 0 4px;
+  }
+
+  .required-note {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .required-note span { color: var(--required); font-weight: 700; }
+
+  /* ===== MAIN LAYOUT ===== */
+  .form-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+
+  /* ===== SECTION CARDS ===== */
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+
+  .section-card:focus-within {
+    box-shadow: 0 4px 20px rgba(0,48,135,0.10);
+    border-color: var(--navy);
+  }
+
+  .section-header {
+    background: linear-gradient(90deg, var(--navy) 0%, #004AB8 100%);
+    color: white;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-header.red {
+    background: linear-gradient(90deg, var(--red) 0%, #E8203A 100%);
+  }
+
+  .section-header.gold {
+    background: linear-gradient(90deg, #7A5A0A 0%, var(--gold) 100%);
+  }
+
+  .section-header.dark {
+    background: linear-gradient(90deg, #1A1410 0%, #3A2E28 100%);
+  }
+
+  .section-icon {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .section-title small {
+    font-size: 10px;
+    opacity: 0.75;
+    font-weight: 400;
+    margin-left: 8px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .section-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    font-size: 10px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .section-body {
+    padding: 22px;
+  }
+
+  /* ===== FORM GRID ===== */
+  .form-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .grid-1-2 { grid-template-columns: 1fr 2fr; }
+  .grid-2-1 { grid-template-columns: 2fr 1fr; }
+  .grid-3-1 { grid-template-columns: 3fr 1fr; }
+
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+  .col-span-4 { grid-column: span 4; }
+
+  /* ===== FORM FIELD ===== */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .field-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .req { color: var(--required); font-size: 13px; }
+
+  .field-input {
+    height: 40px;
+    padding: 0 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    width: 100%;
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--navy);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0,48,135,0.08);
+  }
+
+  .field-input.error {
+    border-color: var(--error);
+    background: #FFF5F5;
+  }
+
+  .field-input.filled {
+    background: #F0F4FF;
+    border-color: #90A8D8;
+  }
+
+  select.field-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5E52' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  textarea.field-input {
+    height: auto;
+    min-height: 72px;
+    padding: 10px 12px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .field-hint {
+    font-size: 10.5px;
+    color: var(--text-light);
+  }
+
+  .field-error {
+    font-size: 10.5px;
+    color: var(--error);
+    display: none;
+  }
+
+  .field-input.error + .field-error { display: block; }
+
+  /* Auto-filled style */
+  .field-input[readonly] {
+    background: var(--surface2);
+    color: var(--text-muted);
+    border-style: dashed;
+    cursor: not-allowed;
+  }
+
+  /* ===== DIVIDER ===== */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 18px 0;
+  }
+
+  .sub-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sub-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== RADIO/CHECKBOX GROUP ===== */
+  .choice-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .choice-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .choice-item input[type="radio"],
+  .choice-item input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--navy);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .choice-item label {
+    font-size: 13.5px;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* ===== PILL SELECTOR ===== */
+  .pill-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pill-option {
+    display: none;
+  }
+
+  .pill-label {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s;
+    background: var(--surface2);
+    user-select: none;
+  }
+
+  .pill-option:checked + .pill-label {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ===== INSURANCE TOGGLE ===== */
+  .toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .toggle-track {
+    width: 44px; height: 24px;
+    background: var(--border);
+    border-radius: 12px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .toggle-thumb {
+    width: 18px; height: 18px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px; left: 3px;
+    transition: left 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  input[type="checkbox"]:checked ~ .toggle-track { background: var(--navy); }
+  input[type="checkbox"]:checked ~ .toggle-track .toggle-thumb { left: 23px; }
+
+  .toggle-switch input { display: none; }
+
+  /* ===== AMOUNT DISPLAY ===== */
+  .amount-box {
+    background: linear-gradient(135deg, #F0F4FF, #E8EDF8);
+    border: 1.5px solid #C0CCDF;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .amount-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .amount-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: Georgia, serif;
+  }
+
+  .amount-value .currency {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 3px;
+  }
+
+  /* ===== TOTAL SECTION ===== */
+  .total-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 100%);
+    border-radius: 12px;
+    padding: 22px 28px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .total-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 20px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .total-item:first-child { padding-left: 0; }
+  .total-item:last-child { border-right: none; }
+
+  .total-item-label {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+  }
+
+  .total-item-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    font-family: Georgia, serif;
+  }
+
+  .total-item.highlight .total-item-value {
+    color: var(--gold);
+    font-size: 28px;
+  }
+
+  /* ===== BARCODE AREA ===== */
+  .barcode-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .barcode-display {
+    flex: 1;
+  }
+
+  .barcode-lines {
+    display: flex;
+    gap: 2px;
+    height: 48px;
+    align-items: flex-end;
+    margin-bottom: 6px;
+  }
+
+  .barcode-lines .bar {
+    background: var(--text);
+    width: 2px;
+  }
+
+  .barcode-num {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .tracking-input-wrap {
+    flex: 2;
+  }
+
+  /* ===== INSTRUCTION BOX ===== */
+  .return-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .return-card {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .return-card:hover { border-color: var(--navy); }
+
+  .return-card input { display: none; }
+
+  .return-card.selected {
+    border-color: var(--navy);
+    background: #F0F4FF;
+  }
+
+  .return-card-icon { font-size: 18px; margin-bottom: 4px; }
+  .return-card-title { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .return-card-desc { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+  /* ===== SIGNATURE AREA ===== */
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .signature-box {
+    border: 1.5px dashed var(--border-strong);
+    border-radius: 8px;
+    padding: 16px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .signature-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .signature-line {
+    border-bottom: 1px solid var(--border-strong);
+    margin-top: 40px;
+    padding-bottom: 4px;
+    font-size: 11px;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  .date-line {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 6px;
+  }
+
+  /* ===== SUBMIT AREA ===== */
+  .submit-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 8px;
+    gap: 16px;
+  }
+
+  .btn {
+    height: 46px;
+    padding: 0 28px;
+    border-radius: 8px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border-strong);
+    color: var(--text-muted);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+    background: #F0F4FF;
+  }
+
+  .btn-secondary {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--navy), #0050CC);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0,48,135,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,48,135,0.4);
+  }
+
+  .btn-danger {
+    background: linear-gradient(135deg, var(--red), #E82040);
+    color: white;
+    box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+  }
+
+  .btn-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(200,16,46,0.4);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* ===== VALIDATION MESSAGES ===== */
+  .validation-banner {
+    background: #FFF5F5;
+    border: 1px solid #F5C0C8;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--error);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .success-banner {
+    background: #F0FFF5;
+    border: 1px solid #A0D8B0;
+    border-radius: 8px;
+    padding: 16px 22px;
+    font-size: 14px;
+    color: var(--success);
+    display: none;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* ===== NOTICE STRIP ===== */
+  .notice-strip {
+    background: var(--light-gold);
+    border: 1px solid #D4A830;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: #5A3E0A;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  /* ===== CONDITIONAL FIELDS ===== */
+  .conditional { display: none; }
+  .conditional.show { display: block; }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    background: var(--dark-navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    border-top: 2px solid var(--gold);
+  }
+
+  /* ===== WEIGHT CALC ===== */
+  .weight-calc {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .weight-calc .field { flex: 1; }
+
+  .weight-calc .operator {
+    font-size: 20px;
+    color: var(--text-muted);
+    padding-top: 22px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SERVICE TYPE CARDS ===== */
+  .service-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .service-card-wrap input { display: none; }
+
+  .service-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--surface2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .service-card:hover { border-color: #90A8D8; background: #F5F8FF; }
+
+  .service-card-wrap input:checked + .service-card {
+    border-color: var(--navy);
+    background: #EEF2FF;
+  }
+
+  .service-card-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .service-card-info {}
+  .service-card-name { font-size: 13.5px; font-weight: 700; color: var(--text); }
+  .service-card-desc { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: white !important; font-size: 9pt; }
+    .page-header { padding: 0 !important; }
+    .header-inner { padding: 8px 16px !important; gap: 10px !important; }
+    .logo-icon { width: 40px !important; height: 40px !important; }
+    .form-title { font-size: 16px !important; }
+    .company-name-th { font-size: 9px !important; }
+    .form-subtitle { display: none; }
+    .form-number { font-size: 14px !important; padding: 3px 10px !important; }
+    .status-bar { display: none !important; }
+    .notice-strip { display: none !important; }
+    .form-body { padding: 8px 12px !important; max-width: 100% !important; }
+    .section-card { margin-bottom: 6px !important; box-shadow: none !important; border: 1px solid #ccc !important; page-break-inside: avoid; }
+    .section-header { padding: 5px 12px !important; }
+    .section-title { font-size: 9pt !important; }
+    .section-badge { display: none !important; }
+    .section-body { padding: 8px 12px !important; }
+    .field-label { font-size: 7.5pt !important; }
+    .field-input { height: 22px !important; font-size: 8.5pt !important; padding: 0 6px !important; border: 1px solid #999 !important; }
+    select.field-input { height: 22px !important; }
+    textarea.field-input { min-height: 32px !important; font-size: 8.5pt !important; }
+    .form-grid { gap: 6px !important; }
+    .grid-2 { grid-template-columns: 1fr 1fr !important; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+    .pill-group { gap: 4px !important; }
+    .pill-label { padding: 2px 8px !important; font-size: 8pt !important; }
+    .service-cards { grid-template-columns: 1fr 1fr !important; gap: 4px !important; }
+    .service-card { padding: 5px 8px !important; }
+    .service-card-icon { font-size: 14px !important; }
+    .service-card-name { font-size: 8pt !important; }
+    .service-card-desc { font-size: 7pt !important; }
+    .total-card { padding: 8px 12px !important; }
+    .total-item-value { font-size: 12pt !important; }
+    .total-item.highlight .total-item-value { font-size: 14pt !important; }
+    .signature-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-top: 8px !important; }
+    .signature-box { min-height: 60px !important; padding: 8px !important; }
+    .submit-area { display: none !important; }
+    #configPanel { display: none !important; }
+    #configBtn { display: none !important; }
+    .notice-strip { display: none !important; }
+    #validationBanner { display: none !important; }
+    #successBanner { display: none !important; }
+    #previewBefore, #previewAfter { display: none !important; }
+    .sub-section-label { font-size: 8pt !important; margin-bottom: 4px !important; }
+    .section-divider { margin: 6px 0 !important; }
+    .field-hint { display: none !important; }
+    .barcode-section { padding: 6px !important; }
+    .page-footer { padding: 6px !important; font-size: 7pt !important; }
+    @page { size: A4; margin: 8mm; }
+  }
+
+  @media (max-width: 768px) {
+    .header-inner { flex-wrap: wrap; padding: 20px; gap: 16px; }
+    .form-body { padding: 20px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .grid-1-2, .grid-2-1, .grid-3-1 { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3, .col-span-4 { grid-column: span 1; }
+    .total-card { grid-template-columns: 1fr; }
+    .total-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 10px 0; }
+    .return-options { grid-template-columns: 1fr; }
+    .signature-grid { grid-template-columns: 1fr; }
+    .service-cards { grid-template-columns: 1fr; }
+    .submit-area { flex-direction: column; }
+    .btn-row { width: 100%; justify-content: stretch; }
+    .btn-row .btn { flex: 1; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-icon">
+        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="52" height="52" rx="10" fill="#003087"/>
+          <path d="M8 36 L26 16 L44 36" stroke="#C8102E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 36 L26 22 L38 36" fill="#C9982A" opacity="0.8"/>
+          <rect x="20" y="28" width="12" height="10" rx="1" fill="white"/>
+          <rect x="23" y="31" width="6" height="4" rx="0.5" fill="#003087"/>
+        </svg>
+      </div>
+      <span class="logo-sub">THPD</span>
+    </div>
+    <div class="header-titles">
+      <div class="company-name-th">บริษัท ไปรษณีย์ไทยดิสทริบิวชั่น จํากัด</div>
+      <div class="form-title">ใบรับฝากส่งสินค้า <span>ดิจิทัล</span></div>
+      <div class="form-subtitle">Digital Parcel Deposit Form · ThailandPost Distribution Co., Ltd.</div>
+    </div>
+    <div class="header-meta">
+      <div class="form-number">ป.309</div>
+      <div class="doc-number-row">
+        <span>เลขที่:</span>
+        <input type="text" id="docNumber" placeholder="THPD-XXXXXXXX" readonly>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="step-indicators">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <span>ข้อมูลการฝากส่ง</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <span>ผู้ส่ง–ผู้รับ</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <span>สิ่งของ & บริการ</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <span>ค่าบริการ</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <span>ยืนยัน</span>
+    </div>
+  </div>
+  <div class="required-note"><span>*</span> ข้อมูลที่ต้องกรอก</div>
+</div>
+
+<!-- MAIN FORM -->
+<div class="form-body">
+
+  <div class="notice-strip">
+    💡 <span>แบบฟอร์มนี้รองรับการบันทึกข้อมูลอิเล็กทรอนิกส์แทนการกรอกด้วยลายมือ ระบบจะตรวจสอบความครบถ้วนโดยอัตโนมัติ และบันทึกข้อมูลเข้าสู่ฐานข้อมูลกลางของบริษัทฯ เพื่อสนับสนุนกระบวนการพิจารณาเคลมสินค้า</span>
+  </div>
+
+  <div id="validationBanner" class="validation-banner">
+    ⚠️ <span id="validationMsg">กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วนก่อนบันทึก</span>
+  </div>
+
+  <div id="successBanner" class="success-banner">
+    ✅ <span>บันทึกข้อมูลเรียบร้อยแล้ว เลขที่ใบรับฝาก: <strong id="savedDocNum"></strong></span>
+  </div>
+
+  <!-- SECTION 1: ข้อมูลการฝากส่ง -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title">
+        ส่วนที่ 1 — ข้อมูลการฝากส่ง
+        <small>Shipment Info</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 1 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid grid-3">
+        <div class="field">
+          <div class="field-label">วันที่ฝากส่ง <span class="req">*</span></div>
+          <input type="date" class="field-input filled" id="depositDate" required>
+          <div class="field-hint">ระบบดึงวันที่ปัจจุบันโดยอัตโนมัติ</div>
+        </div>
+        <div class="field">
+          <div class="field-label">ที่ทำการรับฝาก <span class="req">*</span></div>
+          <input type="text" class="field-input" id="branch" placeholder="เช่น ที่ทำการไปรษณีย์หลักสี่, สาขาดอนเมือง" required>
+        </div>
+        <div class="field">
+          <div class="field-label">รหัสพนักงาน <span class="req">*</span></div>
+          <input type="text" class="field-input" id="staffId" placeholder="เช่น THPD-12345" required>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="sub-section-label">ประเภทบริการ</div>
+      <div class="service-cards">
+        <label class="service-card-wrap">
+          <input type="radio" name="serviceType" value="logispost" checked>
+          <div class="service-card">
+            <div class="service-card-icon">📦</div>
+            <div class="service-card-info">
+              <div class="service-card-name">Logispost</div>
+              <div class="service-card-desc">บริการรับฝากส่งพัสดุครบวงจร ติดตามได้ตลอด 24 ชม.</div>
+            </div>
+          </div>
+        </label>
+        <label class="service-card-wrap">
+          <input type="radio" name="serviceType" value="ems_jumbo">
+          <div class="service-card">
+            <div class="service-card-icon">🚀</div>
+            <div class="service-card-info">
+              <div class="service-card-name">EMS Jumbo</div>
+              <div class="service-card-desc">บริการด่วนพิเศษสำหรับพัสดุขนาดใหญ่ น้ำหนักมาก</div>
+            </div>
+          </div>
+        </label>
+        <label class="service-card-wrap">
+          <input type="radio" name="serviceType" value="b2b">
+          <div class="service-card">
+            <div class="service-card-icon">🏢</div>
+            <div class="service-card-info">
+              <div class="service-card-name">B2B Logistics</div>
+              <div class="service-card-desc">บริการโลจิสติกส์สำหรับลูกค้าธุรกิจ (สัญญา)</div>
+            </div>
+          </div>
+        </label>
+        <label class="service-card-wrap">
+          <input type="radio" name="serviceType" value="cold_chain">
+          <div class="service-card">
+            <div class="service-card-icon">❄️</div>
+            <div class="service-card-info">
+              <div class="service-card-name">Cold Chain</div>
+              <div class="service-card-desc">ขนส่งควบคุมอุณหภูมิสำหรับยา/วัคซีน/อาหาร</div>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: ผู้ฝากส่ง -->
+  <div class="section-card">
+    <div class="section-header red">
+      <div class="section-icon">👤</div>
+      <div class="section-title">
+        ส่วนที่ 2 — ข้อมูลผู้ฝากส่ง
+        <small>Sender Information</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 2 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="sub-section-label">ค้นหาลูกค้า (เชื่อมฐานข้อมูล)</div>
+      <div class="form-grid grid-3" style="margin-bottom:16px">
+        <div class="field col-span-2">
+          <div class="field-label">รหัสลูกค้า / เบอร์โทรศัพท์</div>
+          <div style="display:flex;gap:8px">
+            <input type="text" class="field-input" id="customerSearch" placeholder="กรอกรหัสลูกค้า หรือเบอร์โทร แล้วกด ค้นหา">
+            <button type="button" class="btn btn-secondary" onclick="searchCustomer()" style="height:40px;white-space:nowrap;padding:0 16px;font-size:13px">🔍 ค้นหา</button>
+          </div>
+          <div class="field-hint">ระบบจะดึงข้อมูลผู้ส่งโดยอัตโนมัติ หากมีในระบบ</div>
+        </div>
+        <div class="field">
+          <div class="field-label">ประเภทผู้ส่ง</div>
+          <select class="field-input" id="senderType">
+            <option>บุคคลทั่วไป</option>
+            <option>นิติบุคคล / บริษัท</option>
+            <option>หน่วยงานรัฐ</option>
+            <option>ลูกค้าสัญญา (Contract)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid grid-2">
+        <div class="field">
+          <div class="field-label">ชื่อ-นามสกุล / ชื่อบริษัท <span class="req">*</span></div>
+          <input type="text" class="field-input" id="senderName" placeholder="กรอกชื่อผู้ส่ง" required>
+        </div>
+        <div class="field">
+          <div class="field-label">หมายเลขโทรศัพท์ <span class="req">*</span></div>
+          <input type="tel" class="field-input" id="senderPhone" placeholder="0XX-XXX-XXXX" required maxlength="12">
+          <div class="field-error">รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง</div>
+        </div>
+        <div class="field col-span-2">
+          <div class="field-label">ที่อยู่ <span class="req">*</span></div>
+          <textarea class="field-input" id="senderAddress" placeholder="บ้านเลขที่ / ซอย / ถนน / แขวง-ตำบล" required></textarea>
+        </div>
+        <div class="field">
+          <div class="field-label">เขต / อำเภอ <span class="req">*</span></div>
+          <input type="text" class="field-input" id="senderDistrict" placeholder="เขต / อำเภอ" required>
+        </div>
+        <div class="field">
+          <div class="field-label">จังหวัด <span class="req">*</span></div>
+          <select class="field-input" id="senderProvince" required>
+            <option value="">— เลือกจังหวัด —</option>
+            <option>กรุงเทพมหานคร</option>
+            <option>กระบี่</option><option>กาญจนบุรี</option><option>กาฬสินธุ์</option>
+            <option>กำแพงเพชร</option><option>ขอนแก่น</option><option>จันทบุรี</option>
+            <option>ฉะเชิงเทรา</option><option>ชลบุรี</option><option>ชัยนาท</option>
+            <option>ชัยภูมิ</option><option>ชุมพร</option><option>เชียงราย</option>
+            <option>เชียงใหม่</option><option>ตรัง</option><option>ตราด</option>
+            <option>ตาก</option><option>นครนายก</option><option>นครปฐม</option>
+            <option>นครพนม</option><option>นครราชสีมา</option><option>นครศรีธรรมราช</option>
+            <option>นครสวรรค์</option><option>นนทบุรี</option><option>นราธิวาส</option>
+            <option>น่าน</option><option>บึงกาฬ</option><option>บุรีรัมย์</option>
+            <option>ปทุมธานี</option><option>ประจวบคีรีขันธ์</option><option>ปราจีนบุรี</option>
+            <option>ปัตตานี</option><option>พระนครศรีอยุธยา</option><option>พะเยา</option>
+            <option>พังงา</option><option>พัทลุง</option><option>พิจิตร</option>
+            <option>พิษณุโลก</option><option>เพชรบุรี</option><option>เพชรบูรณ์</option>
+            <option>แพร่</option><option>ภูเก็ต</option><option>มหาสารคาม</option>
+            <option>มุกดาหาร</option><option>แม่ฮ่องสอน</option><option>ยโสธร</option>
+            <option>ยะลา</option><option>ร้อยเอ็ด</option><option>ระนอง</option>
+            <option>ระยอง</option><option>ราชบุรี</option><option>ลพบุรี</option>
+            <option>ลำปาง</option><option>ลำพูน</option><option>เลย</option>
+            <option>ศรีสะเกษ</option><option>สกลนคร</option><option>สงขลา</option>
+            <option>สตูล</option><option>สมุทรปราการ</option><option>สมุทรสงคราม</option>
+            <option>สมุทรสาคร</option><option>สระแก้ว</option><option>สระบุรี</option>
+            <option>สิงห์บุรี</option><option>สุโขทัย</option><option>สุพรรณบุรี</option>
+            <option>สุราษฎร์ธานี</option><option>สุรินทร์</option><option>หนองคาย</option>
+            <option>หนองบัวลำภู</option><option>อ่างทอง</option><option>อำนาจเจริญ</option>
+            <option>อุดรธานี</option><option>อุตรดิตถ์</option><option>อุทัยธานี</option>
+            <option>อุบลราชธานี</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">รหัสไปรษณีย์ <span class="req">*</span></div>
+          <input type="text" class="field-input" id="senderPostcode" placeholder="XXXXX" maxlength="5" required>
+          <div class="field-error">รหัสไปรษณีย์ต้องเป็นตัวเลข 5 หลัก</div>
+        </div>
+        <div class="field">
+          <div class="field-label">อีเมล</div>
+          <input type="email" class="field-input" id="senderEmail" placeholder="example@email.com">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ผู้รับ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div class="section-title">
+        ส่วนที่ 3 — ข้อมูลผู้รับ
+        <small>Recipient Information</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 3 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid grid-2">
+        <div class="field">
+          <div class="field-label">ชื่อ-นามสกุล / ชื่อบริษัท <span class="req">*</span></div>
+          <input type="text" class="field-input" id="recipientName" placeholder="กรอกชื่อผู้รับ" required>
+        </div>
+        <div class="field">
+          <div class="field-label">หมายเลขโทรศัพท์ <span class="req">*</span></div>
+          <input type="tel" class="field-input" id="recipientPhone" placeholder="0XX-XXX-XXXX" required maxlength="12">
+          <div class="field-error">รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง</div>
+        </div>
+        <div class="field col-span-2">
+          <div class="field-label">ที่อยู่ <span class="req">*</span></div>
+          <textarea class="field-input" id="recipientAddress" placeholder="บ้านเลขที่ / ซอย / ถนน / แขวง-ตำบล" required></textarea>
+        </div>
+        <div class="field">
+          <div class="field-label">แขวง / ตำบล <span class="req">*</span></div>
+          <input type="text" class="field-input" id="recipientSubDistrict" placeholder="แขวง / ตำบล" required>
+        </div>
+        <div class="field">
+          <div class="field-label">เขต / อำเภอ <span class="req">*</span></div>
+          <input type="text" class="field-input" id="recipientDistrict" placeholder="เขต / อำเภอ" required>
+        </div>
+        <div class="field">
+          <div class="field-label">จังหวัด <span class="req">*</span></div>
+          <select class="field-input" id="recipientProvince" required>
+            <option value="">— เลือกจังหวัด —</option>
+            <option>กรุงเทพมหานคร</option><option>กระบี่</option><option>กาญจนบุรี</option>
+            <option>กาฬสินธุ์</option><option>กำแพงเพชร</option><option>ขอนแก่น</option>
+            <option>จันทบุรี</option><option>ฉะเชิงเทรา</option><option>ชลบุรี</option>
+            <option>ชัยนาท</option><option>ชัยภูมิ</option><option>ชุมพร</option>
+            <option>เชียงราย</option><option>เชียงใหม่</option><option>ตรัง</option>
+            <option>ตราด</option><option>ตาก</option><option>นครนายก</option>
+            <option>นครปฐม</option><option>นครพนม</option><option>นครราชสีมา</option>
+            <option>นครศรีธรรมราช</option><option>นครสวรรค์</option><option>นนทบุรี</option>
+            <option>นราธิวาส</option><option>น่าน</option><option>บึงกาฬ</option>
+            <option>บุรีรัมย์</option><option>ปทุมธานี</option><option>ประจวบคีรีขันธ์</option>
+            <option>ปราจีนบุรี</option><option>ปัตตานี</option><option>พระนครศรีอยุธยา</option>
+            <option>พะเยา</option><option>พังงา</option><option>พัทลุง</option>
+            <option>พิจิตร</option><option>พิษณุโลก</option><option>เพชรบุรี</option>
+            <option>เพชรบูรณ์</option><option>แพร่</option><option>ภูเก็ต</option>
+            <option>มหาสารคาม</option><option>มุกดาหาร</option><option>แม่ฮ่องสอน</option>
+            <option>ยโสธร</option><option>ยะลา</option><option>ร้อยเอ็ด</option>
+            <option>ระนอง</option><option>ระยอง</option><option>ราชบุรี</option>
+            <option>ลพบุรี</option><option>ลำปาง</option><option>ลำพูน</option>
+            <option>เลย</option><option>ศรีสะเกษ</option><option>สกลนคร</option>
+            <option>สงขลา</option><option>สตูล</option><option>สมุทรปราการ</option>
+            <option>สมุทรสงคราม</option><option>สมุทรสาคร</option><option>สระแก้ว</option>
+            <option>สระบุรี</option><option>สิงห์บุรี</option><option>สุโขทัย</option>
+            <option>สุพรรณบุรี</option><option>สุราษฎร์ธานี</option><option>สุรินทร์</option>
+            <option>หนองคาย</option><option>หนองบัวลำภู</option><option>อ่างทอง</option>
+            <option>อำนาจเจริญ</option><option>อุดรธานี</option><option>อุตรดิตถ์</option>
+            <option>อุทัยธานี</option><option>อุบลราชธานี</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">รหัสไปรษณีย์ <span class="req">*</span></div>
+          <input type="text" class="field-input" id="recipientPostcode" placeholder="XXXXX" maxlength="5" required>
+          <div class="field-error">รหัสไปรษณีย์ต้องเป็นตัวเลข 5 หลัก</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ข้อมูลสิ่งของ -->
+  <div class="section-card">
+    <div class="section-header gold">
+      <div class="section-icon">🎁</div>
+      <div class="section-title">
+        ส่วนที่ 4 — ข้อมูลสิ่งของที่ฝากส่ง
+        <small>Item Details</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 4 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid grid-2">
+        <div class="field">
+          <div class="field-label">ประเภทสิ่งของ <span class="req">*</span></div>
+          <select class="field-input" id="itemType" required>
+            <option value="">— เลือกประเภทสิ่งของ —</option>
+            <optgroup label="สินค้าทั่วไป">
+              <option>เสื้อผ้าและสิ่งทอ</option>
+              <option>อิเล็กทรอนิกส์และอุปกรณ์</option>
+              <option>เครื่องใช้ในบ้าน</option>
+              <option>หนังสือและสื่อสิ่งพิมพ์</option>
+              <option>เครื่องสำอางและความงาม</option>
+              <option>ของเล่นและอุปกรณ์กีฬา</option>
+              <option>อาหารและเครื่องดื่ม</option>
+              <option>เฟอร์นิเจอร์และของตกแต่ง</option>
+            </optgroup>
+            <optgroup label="สินค้าพิเศษ">
+              <option>ยาและเวชภัณฑ์ (มาตรฐาน GDP)</option>
+              <option>วัคซีนและผลิตภัณฑ์ชีวภาพ</option>
+              <option>สินค้าควบคุมอุณหภูมิ (Cold Chain)</option>
+              <option>เอกสารสำคัญ</option>
+              <option>ของมีคุณค่า / เครื่องประดับ</option>
+              <option>อุปกรณ์ทางการแพทย์</option>
+            </optgroup>
+            <optgroup label="อื่น ๆ">
+              <option>สินค้าเกษตร</option>
+              <option>อะไหล่และชิ้นส่วน</option>
+              <option>มอเตอร์ไซค์และอุปกรณ์</option>
+              <option>อื่น ๆ (ระบุในหมายเหตุ)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">รายละเอียดสิ่งของ</div>
+          <input type="text" class="field-input" id="itemDesc" placeholder="ระบุรายละเอียดสั้น ๆ">
+        </div>
+        <div class="field">
+          <div class="field-label">มูลค่าสินค้า (บาท) <span class="req">*</span></div>
+          <input type="number" class="field-input" id="itemValue" placeholder="0.00" min="0" step="0.01" required>
+          <div class="field-hint">ใช้สำหรับอ้างอิงในกรณีเคลมค่าเสียหาย</div>
+        </div>
+        <div class="field">
+          <div class="field-label">จำนวนชิ้น <span class="req">*</span></div>
+          <input type="number" class="field-input" id="itemCount" placeholder="1" min="1" value="1" required>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="sub-section-label">ลักษณะการหุ้มห่อ (สำคัญสำหรับการเคลม)</div>
+      <div class="form-grid grid-1" style="gap:14px">
+        <div class="field">
+          <div class="field-label">วิธีการหุ้มห่อ <span class="req">*</span></div>
+          <div class="pill-group" style="flex-wrap:wrap;gap:10px;margin-top:4px">
+            <input type="radio" name="wrapType" id="wrap_wood" value="ลังไม้" class="pill-option">
+            <label for="wrap_wood" class="pill-label">🪵 ลังไม้</label>
+            <input type="radio" name="wrapType" id="wrap_foam" value="โฟม" class="pill-option">
+            <label for="wrap_foam" class="pill-label">🫧 โฟม</label>
+            <input type="radio" name="wrapType" id="wrap_box" value="กล่องกระดาษ" class="pill-option">
+            <label for="wrap_box" class="pill-label">📦 กล่องกระดาษ</label>
+            <input type="radio" name="wrapType" id="wrap_bubble" value="ซองกันกระแทก" class="pill-option">
+            <label for="wrap_bubble" class="pill-label">🛡️ ซองกันกระแทก</label>
+            <input type="radio" name="wrapType" id="wrap_other" value="อื่นๆ" class="pill-option" onchange="toggleOtherWrap()">
+            <label for="wrap_other" class="pill-label">✏️ อื่น ๆ</label>
+          </div>
+        </div>
+        <div class="field conditional" id="otherWrapField">
+          <div class="field-label">ระบุลักษณะการหุ้มห่ออื่น ๆ <span class="req">*</span></div>
+          <input type="text" class="field-input" id="wrapOtherDetail" placeholder="ระบุลักษณะการหุ้มห่อ">
+        </div>
+        <div class="form-grid grid-2" style="gap:14px">
+          <div class="field">
+            <div class="field-label">สภาพการหุ้มห่อขณะรับฝาก <span class="req">*</span></div>
+            <select class="field-input" id="packageCondition" required>
+              <option value="">— เลือกสภาพ —</option>
+              <option>สมบูรณ์ ไม่มีรอยชำรุด</option>
+              <option>ดี (มีรอยเล็กน้อยแต่ไม่กระทบสินค้า)</option>
+              <option>ชำรุดบางส่วน (แจ้งลูกค้าแล้ว)</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="field-label">หมายเหตุการหุ้มห่อ</div>
+            <input type="text" class="field-input" id="packageNote" placeholder="เช่น มีฉลาก FRAGILE, ห้ามวางทับ, ห้ามพลิกคว่ำ">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: บริการพิเศษ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div class="section-title">
+        ส่วนที่ 5 — บริการพิเศษ
+        <small>Special Services</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 5 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="sub-section-label">ประเภทการส่ง</div>
+      <div class="pill-group" style="margin-bottom:20px">
+        <input type="radio" name="deliveryType" id="dt_normal" value="normal" class="pill-option" checked>
+        <label for="dt_normal" class="pill-label">📬 ธรรมดา</label>
+
+        <input type="radio" name="deliveryType" id="dt_reg" value="registered" class="pill-option">
+        <label for="dt_reg" class="pill-label">📝 ลงทะเบียน</label>
+
+        <input type="radio" name="deliveryType" id="dt_express" value="express" class="pill-option">
+        <label for="dt_express" class="pill-label">⚡ ด่วนพิเศษ (EMS)</label>
+
+        <input type="radio" name="deliveryType" id="dt_sameday" value="sameday" class="pill-option">
+        <label for="dt_sameday" class="pill-label">🏃 Same Day</label>
+
+
+      </div>
+
+      <div class="sub-section-label">ตัวเลือกเพิ่มเติม</div>
+      <div class="form-grid grid-2" style="margin-bottom:18px">
+        <!-- COD -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:16px">
+          <label class="toggle-switch" style="margin-bottom:10px">
+            <input type="checkbox" id="codToggle" onchange="toggleConditional('codSection','codToggle')">
+            <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            <span style="font-size:13.5px;font-weight:600">เก็บเงินปลายทาง (COD)</span>
+          </label>
+          <div id="codSection" class="conditional">
+            <div class="field">
+              <div class="field-label">จำนวนเงิน COD (บาท) <span class="req">*</span></div>
+              <input type="number" class="field-input" id="codAmount" placeholder="0.00" min="0" step="0.01" oninput="calcTotal()">
+            </div>
+          </div>
+        </div>
+
+        <!-- Insurance -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:16px">
+          <label class="toggle-switch" style="margin-bottom:10px">
+            <input type="checkbox" id="insuranceToggle" onchange="toggleConditional('insuranceSection','insuranceToggle');calcTotal()">
+            <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            <span style="font-size:13.5px;font-weight:600">รับประกันสินค้า</span>
+          </label>
+          <div id="insuranceSection" class="conditional">
+            <div class="form-grid grid-2">
+              <div class="field">
+                <div class="field-label">วงเงินรับประกัน (บาท) <span class="req">*</span></div>
+                <input type="number" class="field-input" id="insuranceAmount" placeholder="0.00" min="0" step="0.01" oninput="calcInsuranceFee()">
+              </div>
+              <div class="field">
+                <div class="field-label">ค่าเบี้ยประกัน (บาท)</div>
+                <input type="number" class="field-input" id="insuranceFee" placeholder="คำนวณอัตโนมัติ" readonly>
+                <div class="field-hint">คิดที่ 0.5% ของวงเงิน (ขั้นต่ำ 10 บาท)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 6: ค่าบริการ -->
+  <div class="section-card">
+    <div class="section-header dark">
+      <div class="section-icon">💰</div>
+      <div class="section-title">
+        ส่วนที่ 6 — ข้อมูลค่าบริการ
+        <small>Payment Details</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 6 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid grid-2" style="margin-bottom:16px">
+        <div class="field">
+          <div class="field-label">ประเภทการชำระ <span class="req">*</span></div>
+          <select class="field-input" id="paymentType" required>
+            <option value="">— เลือกวิธีชำระ —</option>
+            <option>เงินสด</option>
+            <option>เก็บเงินปลายทาง (ผู้รับจ่าย)</option>
+            <option>บัญชีลูกค้า (Account)</option>
+            <option>โอนเงิน</option>
+            <option>QR Code</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">ค่าไปรษณียากร / ค่าขนส่ง (บาท) <span class="req">*</span></div>
+          <input type="number" class="field-input" id="baseFee" placeholder="0.00" min="0" step="0.01" required oninput="calcTotal()">
+        </div>
+        <div class="field">
+          <div class="field-label">ค่าบริการพิเศษเพิ่มเติม (บาท)</div>
+          <input type="number" class="field-input" id="extraFee" placeholder="0.00" min="0" step="0.01" oninput="calcTotal()">
+        </div>
+        <div class="field">
+          <div class="field-label">ส่วนลด (บาท)</div>
+          <input type="number" class="field-input" id="discount" placeholder="0.00" min="0" step="0.01" oninput="calcTotal()">
+        </div>
+      </div>
+
+      <div class="total-card">
+        <div class="total-item">
+          <div class="total-item-label">ค่าขนส่ง</div>
+          <div class="total-item-value" id="displayBase">฿0.00</div>
+        </div>
+        <div class="total-item">
+          <div class="total-item-label">ค่าบริการเพิ่ม + ประกัน</div>
+          <div class="total-item-value" id="displayExtras">฿0.00</div>
+        </div>
+        <div class="total-item highlight">
+          <div class="total-item-label">รวมค่าบริการทั้งสิ้น</div>
+          <div class="total-item-value" id="displayTotal">฿0.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: เลขติดตาม + ลายเซ็น -->
+  <div class="section-card">
+    <div class="section-header red">
+      <div class="section-icon">🔖</div>
+      <div class="section-title">
+        ส่วนที่ 7 — เลขติดตาม & ยืนยัน
+        <small>Tracking & Confirmation</small>
+      </div>
+      <div class="section-badge">ส่วนที่ 7 / 7</div>
+    </div>
+    <div class="section-body">
+      <div class="field" style="margin-bottom:18px">
+        <div class="field-label">หมายเหตุเพิ่มเติม</div>
+        <textarea class="field-input" id="remarks" placeholder="หมายเหตุพิเศษ เช่น แจ้งวันจัดส่ง, คำแนะนำพิเศษ, เงื่อนไขพิเศษ" style="min-height:80px"></textarea>
+      </div>
+
+      <div class="sub-section-label">รูปถ่ายประกอบการรับฝาก (สำหรับอ้างอิงกรณีเคลม)</div>
+      <div class="form-grid grid-2" style="gap:18px">
+        <!-- รูปถ่ายสินค้าก่อนส่ง -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <div style="background:linear-gradient(90deg,var(--navy),#004AB8);color:white;padding:10px 16px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px">
+            <span>📷</span> รูปถ่ายสินค้าก่อนส่ง
+          </div>
+          <div style="padding:16px">
+            <div style="border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;background:var(--surface2);cursor:pointer;transition:all 0.15s;position:relative" id="dropzone1" onclick="document.getElementById('photosBefore').click()" ondragover="handleDragOver(event,'dropzone1')" ondragleave="handleDragLeave('dropzone1')" ondrop="handleDrop(event,'photosBefore','previewBefore')">
+              <div style="font-size:32px;margin-bottom:8px">🖼️</div>
+              <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">คลิกหรือลากรูปมาวางที่นี่</div>
+              <div style="font-size:11px;color:var(--text-light)">PNG, JPG, HEIC (สูงสุด 10MB ต่อไฟล์)</div>
+              <input type="file" id="photosBefore" multiple accept="image/*" style="display:none" onchange="previewPhotos(this,'previewBefore')">
+            </div>
+            <div id="previewBefore" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:8px">📌 ถ่ายสภาพสินค้าก่อนนำเข้าบรรจุภัณฑ์ทุกด้าน</div>
+          </div>
+        </div>
+        <!-- รูปถ่ายหลังแพ็ค -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <div style="background:linear-gradient(90deg,var(--red),#E82040);color:white;padding:10px 16px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px">
+            <span>📦</span> รูปถ่ายหลังแพ็คสินค้าแล้ว
+          </div>
+          <div style="padding:16px">
+            <div style="border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;background:var(--surface2);cursor:pointer;transition:all 0.15s;position:relative" id="dropzone2" onclick="document.getElementById('photosAfter').click()" ondragover="handleDragOver(event,'dropzone2')" ondragleave="handleDragLeave('dropzone2')" ondrop="handleDrop(event,'photosAfter','previewAfter')">
+              <div style="font-size:32px;margin-bottom:8px">📦</div>
+              <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:4px">คลิกหรือลากรูปมาวางที่นี่</div>
+              <div style="font-size:11px;color:var(--text-light)">PNG, JPG, HEIC (สูงสุด 10MB ต่อไฟล์)</div>
+              <input type="file" id="photosAfter" multiple accept="image/*" style="display:none" onchange="previewPhotos(this,'previewAfter')">
+            </div>
+            <div id="previewAfter" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:8px">📌 ถ่ายสภาพบรรจุภัณฑ์หลังปิดผนึกแล้วทุกด้าน</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="signature-grid" style="margin-top:20px">
+        <div class="signature-box">
+          <div class="signature-title">ลายเซ็นผู้ฝากส่ง</div>
+          <div class="signature-line">ลงชื่อ ............................................</div>
+          <div class="date-line">วันที่ ................................................</div>
+        </div>
+        <div class="signature-box">
+          <div class="signature-title">ลายเซ็นพนักงานรับฝาก</div>
+          <div class="signature-line">ลงชื่อ ............................................</div>
+          <div class="date-line">รหัสพนักงาน .........................................</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <div class="btn-row">
+      <button type="button" class="btn btn-outline" onclick="resetForm()">🔄 ล้างข้อมูล</button>
+      <button type="button" class="btn btn-secondary" onclick="saveDraft()">💾 บันทึกฉบับร่าง</button>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-secondary" onclick="printForm()">🖨️ พิมพ์ใบรับฝาก</button>
+      <button type="button" class="btn btn-danger" onclick="submitForm()">✅ บันทึก & ยืนยันการรับฝาก</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  บริษัท ไปรษณีย์ไทยดิสทริบิวชั่น จํากัด (THPD) · เลขที่ 111 ถนนแจ้งวัฒนะ เขตหลักสี่ กรุงเทพมหานคร 10210
+  · โทร. 02-831-3704 · www.thpd.co.th · ระบบแบบฟอร์มดิจิทัล ป.309 v2.0
+</footer>
+
+<script>
+// ===== CONFIG — ใส่ URL จาก Google Apps Script ที่นี่ =====
+var SHEETS_URL = "https://script.google.com/macros/s/AKfycbytL6Z1sEGEZiZEnoz_VZJfGzEXohYkUwD_jKAGztqRj1nkmp0uu0q-r3bDFp_exhBK/exec";
+
+// ===== INIT =====
+window.addEventListener('load', () => {
+  // Set today's date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('depositDate').value = today;
+  // Generate doc number
+  const docNum = 'THPD-' + Date.now().toString().slice(-8);
+  document.getElementById('docNumber').value = docNum;
+  // Generate barcode lines
+  renderBarcode('');
+});
+
+// ===== BARCODE =====
+function renderBarcode(text) {
+  const container = document.getElementById('barcodeLines');
+  container.innerHTML = '';
+  const heights = [48,32,48,28,44,36,48,30,44,32,48,36,42,28,48,34,46,30,48,36,44,28,48];
+  heights.forEach(h => {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = h + 'px';
+    container.appendChild(bar);
+  });
+}
+
+function updateBarcode(val) {
+  document.getElementById('barcodeText').textContent = val || '—';
+}
+
+function generateTracking() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const prefix = 'TH' + chars[Math.floor(Math.random()*chars.length)];
+  const nums = Array.from({length:8}, () => Math.floor(Math.random()*10)).join('');
+  const suffix = 'TH';
+  const tracking = prefix + nums + suffix;
+  document.getElementById('trackingNo').value = tracking;
+  updateBarcode(tracking);
+}
+
+// ===== VOLUMETRIC WEIGHT =====
+function calcVolumetric() {
+  const w = parseFloat(document.getElementById('dimW').value) || 0;
+  const l = parseFloat(document.getElementById('dimL').value) || 0;
+  const h = parseFloat(document.getElementById('dimH').value) || 0;
+  const actual = parseFloat(document.getElementById('weight').value) || 0;
+  const vol = (w * l * h) / 5000;
+  document.getElementById('volumetric').value = vol > 0 ? vol.toFixed(2) : '';
+  const chargeable = Math.max(actual, vol);
+  document.getElementById('chargeable').value = chargeable > 0 ? chargeable.toFixed(2) : '';
+  calcTotal();
+}
+
+// ===== INSURANCE FEE =====
+function calcInsuranceFee() {
+  const amount = parseFloat(document.getElementById('insuranceAmount').value) || 0;
+  const fee = Math.max(amount * 0.005, amount > 0 ? 10 : 0);
+  document.getElementById('insuranceFee').value = fee > 0 ? fee.toFixed(2) : '';
+  calcTotal();
+}
+
+// ===== TOTAL =====
+function calcTotal() {
+  const base = parseFloat(document.getElementById('baseFee').value) || 0;
+  const extra = parseFloat(document.getElementById('extraFee').value) || 0;
+  const discount = parseFloat(document.getElementById('discount').value) || 0;
+  const insurFee = parseFloat(document.getElementById('insuranceFee').value) || 0;
+  const extras = extra + insurFee;
+  const total = base + extras - discount;
+
+  document.getElementById('displayBase').textContent = '฿' + base.toFixed(2);
+  document.getElementById('displayExtras').textContent = '฿' + extras.toFixed(2);
+  document.getElementById('displayTotal').textContent = '฿' + Math.max(total, 0).toFixed(2);
+}
+
+// ===== CONDITIONAL TOGGLE =====
+function toggleConditional(sectionId, toggleId) {
+  const section = document.getElementById(sectionId);
+  const toggle = document.getElementById(toggleId);
+  section.classList.toggle('show', toggle.checked);
+}
+
+// ===== RETURN CARD SELECTION =====
+function selectReturn(card, value) {
+  ['rc1','rc2','rc3'].forEach(id => document.getElementById(id).classList.remove('selected'));
+  card.classList.add('selected');
+  card.querySelector('input').checked = true;
+}
+
+// ===== CUSTOMER SEARCH (MOCK) =====
+function searchCustomer() {
+  const query = document.getElementById('customerSearch').value.trim();
+  if (!query) { alert('กรุณากรอกรหัสลูกค้า หรือหมายเลขโทรศัพท์'); return; }
+
+  // Mock data
+  const mockData = {
+    '0812345678': { name: 'บริษัท อินโนเวทีฟ เทรดดิ้ง จำกัด', phone: '081-234-5678', address: '123 ซอยลาดพร้าว 15', district: 'จตุจักร', province: 'กรุงเทพมหานคร', postcode: '10900' },
+    'CUST001': { name: 'นางสาว วาสนา สุขใจ', phone: '089-876-5432', address: '456 ถนนพระราม 9', district: 'ห้วยขวาง', province: 'กรุงเทพมหานคร', postcode: '10310' },
+  };
+
+  const found = mockData[query] || mockData['0812345678'];
+  document.getElementById('senderName').value = found.name;
+  document.getElementById('senderPhone').value = found.phone;
+  document.getElementById('senderAddress').value = found.address;
+  document.getElementById('senderDistrict').value = found.district;
+  document.getElementById('senderProvince').value = found.province;
+  document.getElementById('senderPostcode').value = found.postcode;
+
+  ['senderName','senderPhone','senderAddress','senderDistrict','senderProvince','senderPostcode']
+    .forEach(id => document.getElementById(id).classList.add('filled'));
+
+  alert('✅ พบข้อมูลลูกค้าในระบบ กรุณาตรวจสอบความถูกต้อง');
+}
+
+// ===== VALIDATION =====
+function validateForm() {
+  const required = ['depositDate','branch','staffId','senderName','senderPhone','senderAddress',
+    'senderDistrict','senderProvince','senderPostcode','recipientName','recipientPhone',
+    'recipientAddress','recipientSubDistrict','recipientDistrict','recipientProvince',
+    'recipientPostcode','itemType','itemValue','itemCount','weight','packageType',
+    'packageCondition','paymentType','baseFee','trackingNo'];
+
+  let errors = [];
+  required.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.value.trim();
+    if (!val) {
+      el.classList.add('error');
+      errors.push(el.previousElementSibling?.textContent?.replace('*','').trim() || id);
+    } else {
+      el.classList.remove('error');
+    }
+  });
+
+  // Phone validation
+  const phoneRegex = /^0[0-9]{8,9}$/;
+  ['senderPhone','recipientPhone'].forEach(id => {
+    const el = document.getElementById(id);
+    const clean = (el.value || '').replace(/[-\s]/g,'');
+    if (el.value && !phoneRegex.test(clean)) {
+      el.classList.add('error');
+      errors.push('รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง');
+    }
+  });
+
+  // Postcode validation
+  ['senderPostcode','recipientPostcode'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.value && !/^\d{5}$/.test(el.value)) {
+      el.classList.add('error');
+      errors.push('รหัสไปรษณีย์ไม่ถูกต้อง');
+    }
+  });
+
+  return errors;
+}
+
+// ===== SUBMIT =====
+function submitForm() {
+  const errors = validateForm();
+  const banner = document.getElementById('validationBanner');
+  const successBanner = document.getElementById('successBanner');
+
+  if (errors.length > 0) {
+    banner.style.display = 'flex';
+    document.getElementById('validationMsg').textContent = `กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน (${errors.length} รายการ)`;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    return;
+  }
+
+  if (!SHEETS_URL) {
+    banner.style.display = 'flex';
+    document.getElementById('validationMsg').textContent = '⚙️ กรุณาใส่ Google Sheets URL ในไฟล์ก่อนใช้งานจริง';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    return;
+  }
+
+  banner.style.display = 'none';
+
+  // Collect all data
+  const getVal = id => (document.getElementById(id) ? document.getElementById(id).value : '');
+  const getRadio = name => { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.value : ''; };
+
+  const formData = {
+    docNumber: getVal('docNumber'),
+    depositDate: getVal('depositDate'),
+    branch: getVal('branch'),
+    staffId: getVal('staffId'),
+    serviceType: getRadio('serviceType'),
+    senderName: getVal('senderName'),
+    senderPhone: getVal('senderPhone'),
+    senderAddress: getVal('senderAddress'),
+    senderDistrict: getVal('senderDistrict'),
+    senderProvince: getVal('senderProvince'),
+    senderPostcode: getVal('senderPostcode'),
+    senderEmail: getVal('senderEmail'),
+    recipientName: getVal('recipientName'),
+    recipientPhone: getVal('recipientPhone'),
+    recipientAddress: getVal('recipientAddress'),
+    recipientSubDistrict: getVal('recipientSubDistrict'),
+    recipientDistrict: getVal('recipientDistrict'),
+    recipientProvince: getVal('recipientProvince'),
+    recipientPostcode: getVal('recipientPostcode'),
+    itemType: getVal('itemType'),
+    itemDesc: getVal('itemDesc'),
+    itemValue: getVal('itemValue'),
+    itemCount: getVal('itemCount'),
+    wrapType: getRadio('wrapType'),
+    wrapOtherDetail: getVal('wrapOtherDetail'),
+    packageCondition: getVal('packageCondition'),
+    packageNote: getVal('packageNote'),
+    deliveryType: getRadio('deliveryType'),
+    codAmount: getVal('codAmount'),
+    insuranceAmount: getVal('insuranceAmount'),
+    insuranceFee: getVal('insuranceFee'),
+    paymentType: getVal('paymentType'),
+    baseFee: getVal('baseFee'),
+    extraFee: getVal('extraFee'),
+    discount: getVal('discount'),
+    totalFee: document.getElementById('displayTotal').textContent.replace('฿',''),
+    remarks: getVal('remarks')
+  };
+
+  // Show loading state
+  const submitBtn = document.querySelector('.btn-danger');
+  submitBtn.textContent = '⏳ กำลังบันทึก...';
+  submitBtn.disabled = true;
+
+  // POST to Google Sheets via Apps Script
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  })
+  .then(() => {
+    submitBtn.textContent = '✅ บันทึก & ยืนยันการรับฝาก';
+    submitBtn.disabled = false;
+    successBanner.style.display = 'flex';
+    document.getElementById('savedDocNum').textContent = formData.docNumber;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
+  })
+  .catch(err => {
+    submitBtn.textContent = '✅ บันทึก & ยืนยันการรับฝาก';
+    submitBtn.disabled = false;
+    banner.style.display = 'flex';
+    document.getElementById('validationMsg').textContent = '❌ เกิดข้อผิดพลาด: ' + err.message;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+}
+
+// ===== SAVE DRAFT =====
+function saveDraft() {
+  alert('💾 บันทึกฉบับร่างเรียบร้อยแล้ว\nสามารถเรียกใช้งานได้ที่ "ฉบับร่าง" ในระบบ');
+}
+
+// ===== PRINT =====
+function printForm() {
+  const getVal = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+  const getRadioLabel = name => { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.closest('label,div')?.querySelector('.pill-label,label')?.textContent || r.value : '—'; };
+  const getRadioVal = name => { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.value : ''; };
+  const getText = (name) => {
+    const labels = {'normal':'ธรรมดา','registered':'ลงทะเบียน','express':'ด่วนพิเศษ (EMS)','sameday':'Same Day',
+      'Logispost':'Logispost','EMS Jumbo':'EMS Jumbo','B2B Logistics':'B2B Logistics','Cold Chain':'Cold Chain'};
+    const r = document.querySelector(`input[name="${name}"]:checked`);
+    if (!r) return '—';
+    return labels[r.value] || r.value;
+  };
+
+  const docNum   = getVal('docNumber') || '—';
+  const depDate  = getVal('depositDate') || '—';
+  const branch   = getVal('branch') || '—';
+  const staffId  = getVal('staffId') || '—';
+  const svcType  = getText('serviceType');
+  const senderName  = getVal('senderName') || '—';
+  const senderPhone = getVal('senderPhone') || '—';
+  const senderAddr  = [getVal('senderAddress'), getVal('senderDistrict'), getVal('senderProvince'), getVal('senderPostcode')].filter(Boolean).join(' ');
+  const recipName   = getVal('recipientName') || '—';
+  const recipPhone  = getVal('recipientPhone') || '—';
+  const recipAddr   = [getVal('recipientAddress'), getVal('recipientSubDistrict'), getVal('recipientDistrict'), getVal('recipientProvince'), getVal('recipientPostcode')].filter(Boolean).join(' ');
+  const itemType    = getVal('itemType') || '—';
+  const itemDesc    = getVal('itemDesc') || '—';
+  const itemValue   = getVal('itemValue') ? '฿' + Number(getVal('itemValue')).toLocaleString() : '—';
+  const itemCount   = getVal('itemCount') || '—';
+  const wrapType    = getRadioVal('wrapType') === 'อื่นๆ' ? getVal('wrapOtherDetail') : (getRadioVal('wrapType') || '—');
+  const pkgCond     = getVal('packageCondition') || '—';
+  const pkgNote     = getVal('packageNote') || '—';
+  const delType     = getText('deliveryType');
+  const codAmt      = document.getElementById('codToggle')?.checked ? '฿' + getVal('codAmount') : 'ไม่มี';
+  const insAmt      = document.getElementById('insuranceToggle')?.checked ? '฿' + getVal('insuranceAmount') : 'ไม่มี';
+  const insFee      = document.getElementById('insuranceToggle')?.checked ? '฿' + getVal('insuranceFee') : '';
+  const payType     = getVal('paymentType') || '—';
+  const baseFee     = getVal('baseFee') ? '฿' + Number(getVal('baseFee')).toLocaleString('th-TH',{minimumFractionDigits:2}) : '฿0.00';
+  const extraFee    = getVal('extraFee') ? '฿' + Number(getVal('extraFee')).toLocaleString('th-TH',{minimumFractionDigits:2}) : '฿0.00';
+  const discount    = getVal('discount') ? '฿' + Number(getVal('discount')).toLocaleString('th-TH',{minimumFractionDigits:2}) : '฿0.00';
+  const totalFee    = document.getElementById('displayTotal')?.textContent || '฿0.00';
+  const remarks     = getVal('remarks') || '—';
+
+  const html = `<!DOCTYPE html>
+<html lang="th"><head><meta charset="UTF-8">
+<title>ใบรับฝากส่งสินค้า ป.309 — ${docNum}</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 9pt; color: #111; background: white; }
+  @page { size: A4; margin: 8mm; }
+  .page { width: 100%; }
+
+  /* HEADER */
+  .header { background: #003087; color: white; padding: 7px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .logo-box { background: white; border-radius: 6px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .company { font-size: 7pt; opacity: 0.85; }
+  .form-name { font-size: 13pt; font-weight: 700; }
+  .doc-badge { background: #C8102E; color: white; border-radius: 6px; padding: 4px 12px; font-size: 11pt; font-weight: 700; text-align: right; }
+  .doc-num { font-size: 7.5pt; color: #ccc; margin-top: 2px; }
+
+  /* META ROW */
+  .meta-row { background: #f0f4ff; border-bottom: 1px solid #ccd; padding: 4px 12px; display: flex; gap: 20px; font-size: 8pt; }
+  .meta-item span { font-weight: 600; color: #003087; }
+
+  /* SECTIONS */
+  .body { padding: 6px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .section { border: 1px solid #ccc; border-radius: 5px; overflow: hidden; }
+  .section.full { grid-column: 1 / -1; }
+  .sec-header { padding: 3px 8px; font-size: 8pt; font-weight: 700; color: white; }
+  .sec-header.blue  { background: #003087; }
+  .sec-header.red   { background: #C8102E; }
+  .sec-header.gold  { background: #9a7200; }
+  .sec-header.green { background: #1a6b3c; }
+  .sec-header.gray  { background: #444; }
+  .sec-body { padding: 5px 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; }
+  .sec-body.one-col { grid-template-columns: 1fr; }
+  .field { margin-bottom: 2px; }
+  .label { font-size: 7pt; color: #666; }
+  .value { font-size: 8.5pt; font-weight: 500; border-bottom: 0.5px solid #ddd; min-height: 14px; padding-bottom: 1px; }
+  .value.big { font-size: 11pt; font-weight: 700; color: #003087; }
+  .value.red { color: #C8102E; font-size: 11pt; font-weight: 700; }
+
+  /* TOTAL */
+  .total-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 8px; }
+  .total-row.highlight { background: #003087; color: white; padding: 5px 8px; }
+  .total-row.highlight .t-label { font-size: 9pt; font-weight: 700; }
+  .total-row.highlight .t-val { font-size: 13pt; font-weight: 700; }
+  .t-label { font-size: 7.5pt; color: #555; }
+  .t-val { font-size: 9pt; font-weight: 600; }
+
+  /* SIGN */
+  .sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 6px 10px; margin-top: 4px; }
+  .sign-box { border: 1px solid #ccc; border-radius: 5px; padding: 6px 10px; min-height: 60px; }
+  .sign-title { font-size: 8pt; font-weight: 700; color: #003087; margin-bottom: 8px; }
+  .sign-line { border-top: 1px solid #999; margin-top: 24px; font-size: 7.5pt; color: #666; padding-top: 3px; }
+
+  /* FOOTER */
+  .footer { text-align: center; font-size: 7pt; color: #999; border-top: 1px solid #eee; margin-top: 6px; padding: 4px; }
+
+  /* REMARKS */
+  .remarks-box { border: 0.5px solid #ddd; border-radius: 3px; padding: 3px 6px; min-height: 24px; font-size: 8.5pt; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-box">📦</div>
+      <div>
+        <div class="company">บริษัท ไปรษณีย์ไทยดิสทริบิวชั่น จำกัด</div>
+        <div class="form-name">ใบรับฝากส่งสินค้า ดิจิทัล</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="doc-badge">ป.309</div>
+      <div class="doc-num">เลขที่: ${docNum}</div>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta-row">
+    <div class="meta-item">วันที่ฝากส่ง: <span>${depDate}</span></div>
+    <div class="meta-item">สาขา: <span>${branch}</span></div>
+    <div class="meta-item">รหัสพนักงาน: <span>${staffId}</span></div>
+    <div class="meta-item">ประเภทบริการ: <span>${svcType}</span></div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- ผู้ฝากส่ง -->
+    <div class="section">
+      <div class="sec-header blue">👤 ผู้ฝากส่ง (Sender)</div>
+      <div class="sec-body one-col">
+        <div class="field"><div class="label">ชื่อ-นามสกุล / บริษัท</div><div class="value">${senderName}</div></div>
+        <div class="field"><div class="label">โทรศัพท์</div><div class="value">${senderPhone}</div></div>
+        <div class="field"><div class="label">ที่อยู่</div><div class="value">${senderAddr || '—'}</div></div>
+      </div>
+    </div>
+
+    <!-- ผู้รับ -->
+    <div class="section">
+      <div class="sec-header red">📍 ผู้รับ (Recipient)</div>
+      <div class="sec-body one-col">
+        <div class="field"><div class="label">ชื่อ-นามสกุล</div><div class="value">${recipName}</div></div>
+        <div class="field"><div class="label">โทรศัพท์</div><div class="value">${recipPhone}</div></div>
+        <div class="field"><div class="label">ที่อยู่</div><div class="value">${recipAddr || '—'}</div></div>
+      </div>
+    </div>
+
+    <!-- สิ่งของ -->
+    <div class="section">
+      <div class="sec-header gold">🎁 ข้อมูลสิ่งของ (Item Details)</div>
+      <div class="sec-body">
+        <div class="field"><div class="label">ประเภทสิ่งของ</div><div class="value">${itemType}</div></div>
+        <div class="field"><div class="label">รายละเอียด</div><div class="value">${itemDesc}</div></div>
+        <div class="field"><div class="label">มูลค่า</div><div class="value">${itemValue}</div></div>
+        <div class="field"><div class="label">จำนวน (ชิ้น)</div><div class="value">${itemCount}</div></div>
+        <div class="field"><div class="label">วิธีหุ้มห่อ</div><div class="value">${wrapType}</div></div>
+        <div class="field"><div class="label">สภาพการหุ้มห่อ</div><div class="value">${pkgCond}</div></div>
+        <div class="field" style="grid-column:1/-1"><div class="label">หมายเหตุการหุ้มห่อ</div><div class="value">${pkgNote}</div></div>
+      </div>
+    </div>
+
+    <!-- บริการและค่าบริการ -->
+    <div class="section">
+      <div class="sec-header green">💰 บริการและค่าบริการ</div>
+      <div class="sec-body">
+        <div class="field"><div class="label">ประเภทการส่ง</div><div class="value">${delType}</div></div>
+        <div class="field"><div class="label">การชำระเงิน</div><div class="value">${payType}</div></div>
+        <div class="field"><div class="label">COD</div><div class="value">${codAmt}</div></div>
+        <div class="field"><div class="label">ประกันสินค้า</div><div class="value">${insAmt}${insFee ? ' (ค่าเบี้ย ' + insFee + ')' : ''}</div></div>
+      </div>
+      <div class="total-row"><span class="t-label">ค่าขนส่ง</span><span class="t-val">${baseFee}</span></div>
+      <div class="total-row"><span class="t-label">ค่าบริการเพิ่ม</span><span class="t-val">${extraFee}</span></div>
+      <div class="total-row"><span class="t-label">ส่วนลด</span><span class="t-val">-${discount}</span></div>
+      <div class="total-row highlight"><span class="t-label">รวมทั้งสิ้น</span><span class="t-val">${totalFee}</span></div>
+    </div>
+
+    <!-- หมายเหตุ -->
+    <div class="section full">
+      <div class="sec-header gray">📝 หมายเหตุเพิ่มเติม</div>
+      <div style="padding:5px 8px">
+        <div class="remarks-box">${remarks}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ลายเซ็น -->
+  <div class="sign-row">
+    <div class="sign-box">
+      <div class="sign-title">ลายเซ็นผู้ฝากส่ง</div>
+      <div class="sign-line">ลงชื่อ ................................................ วันที่ .............................</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">ลายเซ็นพนักงานรับฝาก</div>
+      <div class="sign-line">ลงชื่อ ................................................ รหัส ................................</div>
+    </div>
+  </div>
+
+  <div class="footer">เอกสารนี้ออกโดยระบบ ป.309 ดิจิทัล — บริษัท ไปรษณีย์ไทยดิสทริบิวชั่น จำกัด — พิมพ์เมื่อ ${new Date().toLocaleString('th-TH')}</div>
+</div>
+<scr' + 'ipt>window.onload = function(){ window.print(); window.onafterprint = function(){ window.close(); }; }<\/scr' + 'ipt>
+<\/body><\/html>`;
+
+  const w = window.open('', '_blank', 'width=794,height=1123');
+  w.document.write(html);
+  w.document.close();
+}
+
+// ===== RESET =====
+function resetForm() {
+  if (!confirm('ต้องการล้างข้อมูลทั้งหมดหรือไม่?')) return;
+  document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="file"])').forEach(el => {
+    if (!el.readOnly) el.value = '';
+  });
+  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+  document.querySelectorAll('textarea').forEach(el => el.value = '');
+  document.querySelectorAll('.field-input').forEach(el => el.classList.remove('error','filled'));
+  document.querySelectorAll('.return-card').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.conditional').forEach(el => el.classList.remove('show'));
+  document.getElementById('codToggle').checked = false;
+  document.getElementById('insuranceToggle').checked = false;
+  document.getElementById('validationBanner').style.display = 'none';
+  document.getElementById('successBanner').style.display = 'none';
+
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('depositDate').value = today;
+  document.getElementById('barcodeText').textContent = '—';
+
+  document.querySelectorAll('.step').forEach((s,i) => {
+    s.classList.remove('done');
+    s.classList.toggle('active', i === 0);
+  });
+
+  calcTotal();
+}
+
+// ===== WRAP TYPE TOGGLE =====
+function toggleOtherWrap() {
+  const isOther = document.getElementById('wrap_other').checked;
+  const field = document.getElementById('otherWrapField');
+  field.classList.toggle('show', isOther);
+}
+
+// ===== PHOTO PREVIEW =====
+function previewPhotos(input, previewId) {
+  const container = document.getElementById(previewId);
+  Array.from(input.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'position:relative;display:inline-block';
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.cssText = 'width:72px;height:72px;object-fit:cover;border-radius:8px;border:1.5px solid var(--border);display:block';
+      const del = document.createElement('button');
+      del.innerHTML = '✕';
+      del.style.cssText = 'position:absolute;top:-6px;right:-6px;width:18px;height:18px;background:var(--red);color:white;border:none;border-radius:50%;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;line-height:1';
+      del.onclick = () => wrap.remove();
+      wrap.appendChild(img);
+      wrap.appendChild(del);
+      container.appendChild(wrap);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleDragOver(e, dropzoneId) {
+  e.preventDefault();
+  document.getElementById(dropzoneId).style.borderColor = 'var(--navy)';
+  document.getElementById(dropzoneId).style.background = '#EEF2FF';
+}
+
+function handleDragLeave(dropzoneId) {
+  document.getElementById(dropzoneId).style.borderColor = 'var(--border)';
+  document.getElementById(dropzoneId).style.background = 'var(--surface2)';
+}
+
+function handleDrop(e, inputId, previewId) {
+  e.preventDefault();
+  const dropzone = e.currentTarget;
+  dropzone.style.borderColor = 'var(--border)';
+  dropzone.style.background = 'var(--surface2)';
+  const input = document.getElementById(inputId);
+  const dt = new DataTransfer();
+  Array.from(e.dataTransfer.files).forEach(f => dt.items.add(f));
+  input.files = dt.files;
+  previewPhotos(input, previewId);
+}
+
+// Input auto-format phone
+['senderPhone','recipientPhone'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9-]/g, '');
+  });
+});
+
+// Postcode digits only
+['senderPostcode','recipientPostcode'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '').slice(0, 5);
+  });
+});
+</script>
+
+<!-- URL CONFIG PANEL -->
+<div id="configPanel" style="display:none!important" style="position:fixed;bottom:20px;right:20px;background:white;border:2px solid #003087;border-radius:12px;padding:16px;width:340px;box-shadow:0 8px 32px rgba(0,0,0,0.15);z-index:9999;font-family:Arial,sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div style="font-size:13px;font-weight:700;color:#003087">⚙️ ตั้งค่า Google Sheets URL</div>
+    <button onclick="document.getElementById('configPanel').style.display='none'" style="background:none;border:none;font-size:16px;cursor:pointer;color:#999">✕</button>
+  </div>
+  <input type="text" id="sheetsUrlInput" placeholder="วาง URL จาก Apps Script ที่นี่..." style="width:100%;padding:8px 10px;border:1.5px solid #D8D0C4;border-radius:6px;font-size:12px;margin-bottom:8px;box-sizing:border-box">
+  <button onclick="saveSheetUrl()" style="width:100%;background:#003087;color:white;border:none;padding:9px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">บันทึก URL</button>
+  <div style="font-size:10px;color:#999;margin-top:8px;line-height:1.5">วาง URL ที่ได้จาก Google Apps Script Deploy แล้วกดบันทึก จากนั้นกรอกฟอร์มและกด "บันทึก & ยืนยัน" ข้อมูลจะเข้า Google Sheets ทันที</div>
+</div>
+
+<button onclick="document.getElementById('configPanel').style.display='block'" style="position:fixed;bottom:20px;right:20px;background:#003087;color:white;border:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(0,48,135,0.35);z-index:9998" id="configBtn" style="display:none">⚙️ ตั้งค่า Sheets URL</button>
+
+<script>
+// Load saved URL on startup
+window.addEventListener('load', function() {
+  var saved = localStorage ? localStorage.getItem('sheetsUrl') : null;
+  if (saved) {
+    SHEETS_URL = saved;
+    document.getElementById('sheetsUrlInput').value = saved;
+    document.getElementById('configPanel').style.display = 'none';
+  }
+});
+
+function saveSheetUrl() {
+  var url = document.getElementById('sheetsUrlInput').value.trim();
+  if (!url || !url.startsWith('https://')) {
+    alert('URL ไม่ถูกต้อง กรุณาวาง URL จาก Google Apps Script');
+    return;
+  }
+  SHEETS_URL = url;
+  if (localStorage) localStorage.setItem('sheetsUrl', url);
+  document.getElementById('configPanel').style.display = 'none';
+  document.getElementById('configBtn').textContent = '✅ Sheets เชื่อมต่อแล้ว';
+  document.getElementById('configBtn').style.background = '#1A6B3C';
+}
+</script>
+
+</body>
+</html>
